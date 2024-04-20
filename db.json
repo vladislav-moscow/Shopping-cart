@@ -1,0 +1,68 @@
+{
+  "products": [
+    {
+      "id": "1",
+      "name": "Armchair",
+      "category": "Chair",
+      "rating": "4.9",
+      "price": "50.2",
+      "imgSrc": "/images/help-image-1.jpg"
+    },
+    {
+      "id": "2",
+      "name": "Bed",
+      "category": "Bed",
+      "rating": "3.0",
+      "price": "102.10",
+      "imgSrc": "/images/help-image-2.jpg"
+    },
+    {
+      "id": "3",
+      "name": "Bench",
+      "category": "Bench",
+      "rating": "4.9",
+      "price": "15",
+      "imgSrc": "/images/help-image-3.jpg"
+    },
+    {
+      "id": "4",
+      "name": "Bed 2",
+      "category": "Bed 2",
+      "rating": "3.0",
+      "price": "102.10",
+      "imgSrc": "/images/help-image-4.jpg"
+    },
+    {
+      "id": "4RbPRkVs83fN-c7ENNtlp",
+      "name": "sdsd",
+      "rating": "100",
+      "price": "52.36",
+      "imgSrc": "https://w.forfun.com/fetch/71/7111142d25bd0f62d5078b68bbfe40a0.jpeg",
+      "category": "Electronics"
+    },
+    {
+      "id": "hFznbdOYYMpbX_7WAQSls",
+      "name": "sdsd",
+      "rating": "1000",
+      "price": "54.3",
+      "imgSrc": "https://sportishka.com/uploads/posts/2022-11/1667593202_21-sportishka-com-p-borakai-dostoprimechatelnosti-oboi-21.jpg",
+      "category": "Electronics"
+    },
+    {
+      "id": "1PsAQqqYfmyeeghq5LILf",
+      "name": "sdsd",
+      "rating": "1000",
+      "price": "54.3",
+      "imgSrc": "https://sportishka.com/uploads/posts/2022-11/1667593202_21-sportishka-com-p-borakai-dostoprimechatelnosti-oboi-21.jpg",
+      "category": "Electronics"
+    },
+    {
+      "id": "M6sOlJwozjAJBIcmZgr4H",
+      "name": "sdsd",
+      "rating": "1000",
+      "price": "54.3",
+      "imgSrc": "https://sportishka.com/uploads/posts/2022-11/1667593202_21-sportishka-com-p-borakai-dostoprimechatelnosti-oboi-21.jpg",
+      "category": "Electronics"
+    }
+  ]
+}
