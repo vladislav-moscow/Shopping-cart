@@ -76,3 +76,12 @@
   width: 14px;
   height: 14px;
 }
+
+.basket-footer {
+	position: fixed;
+	bottom: 0;
+	background-color: white;
+	height: 75px;
+	display: flex;
+	align-items: center;
+}
