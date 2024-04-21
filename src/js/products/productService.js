@@ -45,7 +45,6 @@ export function addProductToBasket(event) {
  */
 function addToCart(product) {
   // Создаем объект для представления товара в корзине
-  console.log(product)
   const cartItem = {
     id: product.id, // Используем ID товара для идентификации товара в корзине
     name: product.name,
@@ -68,10 +67,63 @@ function addToCart(product) {
   updateCartUI()
 }
 
-function updateCartUI() {
+/**
+ * Функция увеличение количеста товара в корзине
+ * @param {Object} item Объект товара
+ * @param {Element} plusButton кнопка увеличение товара
+ * @returns обновление интерфейса корзины товара
+ */
+
+function incrementItemQuantity(item, plusButton) {
+  console.log(item)
+  if (item.quantity >= 32) {
+    plusButton.disabled = true
+    return
+  }
+  item.quantity++
+  updateCartUI()
+}
+
+/**
+ * Функция уменьшение количеста товара в корзине
+ * @param {Object} item Объект товара
+ * @param {Element} plusButton кнопка уменьшение товара
+ * @returns обновление интерфейса корзины товара
+ */
+
+function decrementItemQuantity(item, minusButton) {
+  if (item.quantity === 1) {
+    minusButton.disabled = true
+    return
+  }
+  item.quantity--
+  updateCartUI()
+}
+
+/**
+ * Функция удаление товара из корзины
+ * @param {Object} item Объект товара
+ */
+
+function deleteItemFromCart(item) {
+  // Находм индекс товара в массиве корзины товаров
+  const itemIndex = cart.findIndex((cartItem) => cartItem.id === item.id)
+  if (itemIndex !== -1) {
+    cart.splice(itemIndex, 1) // Удаляем товар из массива корзины
+    updateCartUI() // Обновляем интерфейс корзины после удаления
+  }
+}
+
+/**
+ * Функция обновление корзины товаров
+ */
+
+export function updateCartUI() {
   // Получаем элемент корзины из DOM
   const cartElement = document.getElementById('basket-list')
+  // Получаем элемент количества товаров в корзине из DOM
   const quantityProductInBasket = document.querySelector('.basket-count__info')
+  // Получаем элемет общей стоимс=ости товаров в корзине из DOM
   const totalPriceElement = document.getElementById('total-price')
 
   // Очищаем содержимое корзины
@@ -82,8 +134,6 @@ function updateCartUI() {
     // Создаем элемент для отображения товара в корзине
     const itemElement = document.createElement('li')
     itemElement.classList.add('cartItem')
-    console.log(item)
-
     // Заполняем содержимое элемента информацией о товаре
     itemElement.innerHTML = `
 			<div class="cartItem-wrapper">
@@ -95,6 +145,12 @@ function updateCartUI() {
 					</div>
 					<div class="cartItem-content__wrapper">
 						<h3 class="cartItem-content__title">${item.name}</h3>
+						<div class="cartItem-content__images">
+							<img class="cartItem-content__delete" src="./src/images/delete_basket.svg" alt="удаление товара иконка">
+							<svg class="cartItem-content__favourites" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+            		<path d="m16 28c7-4.733 14-10 14-17 0-1.792-.683-3.583-2.05-4.95-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05l-2.051 2.051-2.05-2.051c-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05-1.367 1.367-2.051 3.158-2.051 4.95 0 7 7 12.267 14 17z"></path>
+          		</svg>
+						</div>
 					</div>
 					<aside class="cartItem-aside">
 						<div class="cartItem-price__container">
@@ -102,9 +158,7 @@ function updateCartUI() {
 						</div>
 						<div>
 							<div class="cartItem-amountSelect">
-								<div>
-									<button class="cartItem-offerAmount Minus">−</button>
-								</div>
+								<button class="cartItem-offerAmount Minus">−</button>
 								<input
 									type="number"
 									value="${item.quantity}"
@@ -114,25 +168,37 @@ function updateCartUI() {
 									class="cartItem-offerAmountCounter"
 									aria-label="Количество товара"
 								/>
-								<div>
-									<button class="cartItem-offerAmount Plus">+</button>
-								</div>
+								<button class="cartItem-offerAmount Plus" type="button">+</button>
 							</div>
 						</div>
 					</aside>
 				</article>
 			</div>
     `
+    // Находим кнопки "+","-","избранное" и "удаление товара"
+    const plusButton = itemElement.querySelector('.Plus')
+    const minusButton = itemElement.querySelector('.Minus')
+    const favorite = itemElement.querySelector('.cartItem-content__favourites')
+    const deleteBtn = itemElement.querySelector('.cartItem-content__delete')
+
+    // Добавляем обработчики событий для кнопок "+","-","избранное" и "удаление товара"
+    plusButton.addEventListener('click', () => incrementItemQuantity(item, plusButton))
+    minusButton.addEventListener('click', () => decrementItemQuantity(item, minusButton))
+    favorite.addEventListener('click', () => favorite.classList.toggle('active'))
+    deleteBtn.addEventListener('click', () => deleteItemFromCart(item))
+
     // Добавляем элемент товара в корзину
     cartElement.appendChild(itemElement)
   })
 
-  // Подсчитываем общую стоимость товаров в корзине
+  // Подсчитываем общее колличество товаров в корзине
   const totalQuantity = cart.reduce((total, item) => total + item.quantity, 0)
+  // Подсчитываем общую стоимость товаров в корзине
   const totalPrice = cart.reduce((total, item) => total + item.price * item.quantity, 0)
 
-  // Обновляем отображение общей стоимости в интерфейсе
+  // Обновляем отображение общего количества товаров в интерфейсе
   quantityProductInBasket.textContent = totalQuantity
+  // Обновляем отображение общей стоимости в интерфейсе
   totalPriceElement.textContent = totalPrice.toFixed(2)
 }
 
