@@ -13,6 +13,7 @@
   flex-direction: column;
   height: 100%;
   transform: translateX(100%);
+  margin-bottom: 100px;
 }
 
 /* счетчик в корзине */
@@ -35,6 +36,10 @@
 
 .basket-container.show {
   transform: translateX(0);
+}
+
+#basket-list {
+  margin-bottom: 100px;
 }
 
 /* отдельная карточка */
@@ -78,10 +83,10 @@
 }
 
 .basket-footer {
-	position: fixed;
-	bottom: 0;
-	background-color: white;
-	height: 75px;
-	display: flex;
-	align-items: center;
+  position: fixed;
+  bottom: 0;
+  background-color: white;
+  height: 75px;
+  display: flex;
+  align-items: center;
 }

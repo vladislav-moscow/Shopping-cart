@@ -84,14 +84,41 @@
 .cartItem-content__wrapper {
   display: flex;
   flex-direction: column;
+  justify-content: space-evenly;
   width: 100%;
   margin: 4px 40px 0 18px;
 }
 
 .cartItem-content__title {
   line-height: 30px;
-	font-weight: 500;
-	font-size: 20px;
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.cartItem-content__images {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.cartItem-content__favourites {
+  width: 21px;
+  height: 21px;
+  cursor: pointer;
+  display: inline-block;
+  fill: white;
+  stroke: black;
+  stroke-width: 2;
+}
+.active {
+	fill: #c00404db;
+	stroke: #c00404db;
+}
+
+.cartItem-content__delete {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
 }
 
 .cartItem-aside {
