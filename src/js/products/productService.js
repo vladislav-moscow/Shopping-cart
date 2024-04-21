@@ -80,20 +80,49 @@ function updateCartUI() {
   // Перебираем все товары в корзине
   cart.forEach((item) => {
     // Создаем элемент для отображения товара в корзине
-    const itemElement = document.createElement('div')
-    itemElement.classList.add('cart-item')
+    const itemElement = document.createElement('li')
+    itemElement.classList.add('cartItem')
     console.log(item)
 
     // Заполняем содержимое элемента информацией о товаре
     itemElement.innerHTML = `
-			
-				<img src="${item?.imgSrc}" class="cart-item-img"/>
-      	<div class="cart-item-name">${item.name}</div>
-      	<div class="cart-item-quantity">Quantity: ${item.quantity}</div>
-      	<div class="cart-item-price">Price: ${item.price}</div>
-			
+			<div class="cartItem-wrapper">
+				<article class="available-CartItem">
+					<div class="cartItem-images__wrapper">
+						<div class="cartIten-images__container">
+							<img class="cartItem-img" src="${item?.imgSrc}" alt="фото товара">
+						</div>
+					</div>
+					<div class="cartItem-content__wrapper">
+						<h3 class="cartItem-content__title">${item.name}</h3>
+					</div>
+					<aside class="cartItem-aside">
+						<div class="cartItem-price__container">
+							<h3 class="cartItem-price">${item.price}</h3>
+						</div>
+						<div>
+							<div class="cartItem-amountSelect">
+								<div>
+									<button class="cartItem-offerAmount Minus">−</button>
+								</div>
+								<input
+									type="number"
+									value="${item.quantity}"
+									min="1"
+									max="32"
+									step="1"
+									class="cartItem-offerAmountCounter"
+									aria-label="Количество товара"
+								/>
+								<div>
+									<button class="cartItem-offerAmount Plus">+</button>
+								</div>
+							</div>
+						</div>
+					</aside>
+				</article>
+			</div>
     `
-
     // Добавляем элемент товара в корзину
     cartElement.appendChild(itemElement)
   })
