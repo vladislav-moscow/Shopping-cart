@@ -1,3 +1,4 @@
+import { updateCartUI } from '../products/productService'
 export class Sidebar {
   /**
 
@@ -31,6 +32,8 @@ export class Sidebar {
     document.body.classList.add('scrollHidden')
     this.sidebar.showModal()
     this.initialFormValues = this.getFormValues()
+    // Обновляем интерфейс корзины
+    updateCartUI()
   }
 
   /**
